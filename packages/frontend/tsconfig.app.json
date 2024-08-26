@@ -10,7 +10,9 @@
       "@src/*": ["src/*"],
       "@assets/*": ["src/assets/*"],
       "@fonts/*": ["src/assets/fonts/*"],
+      "@icons/*": ["src/assets/icons/*"],
       "@components/*": ["src/components/*"],
+      "@pages/*": ["src/pages/*"],
       "@hooks/*": ["src/hooks/*"]
     },
 

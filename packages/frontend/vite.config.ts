@@ -12,16 +12,24 @@ export default defineConfig({
         replacement: resolve(__dirname, "src"),
       },
       {
-        find: "@components",
-        replacement: resolve(__dirname, "src/components"),
-      },
-      {
         find: "@assets",
         replacement: resolve(__dirname, "src/assets"),
       },
       {
         find: "@fonts",
         replacement: resolve(__dirname, "src/assets/fonts"),
+      },
+      {
+        find: "@icons",
+        replacement: resolve(__dirname, "src/assets/icons"),
+      },
+      {
+        find: "@components",
+        replacement: resolve(__dirname, "src/components"),
+      },
+      {
+        find: "@pages",
+        replacement: resolve(__dirname, "src/pages"),
       },
       {
         find: "@hooks",
