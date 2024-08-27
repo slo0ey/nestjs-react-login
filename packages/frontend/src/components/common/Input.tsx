@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import styled from "styled-components";
 
-import clear from "@assets/icons/clear.svg";
+import ic_clear from "@icons/clear.svg";
 
 type InputProps = {
   name: string;
@@ -101,6 +101,7 @@ function Input({ name, label, type, onChange }: InputProps) {
         }}
         ref={inputRef}
         spellCheck="false"
+        autoCapitalize="none"
       />
       {inputState !== "none" && (
         <Action
@@ -111,7 +112,7 @@ function Input({ name, label, type, onChange }: InputProps) {
             }
           }}
         >
-          <Icon src={clear} />
+          <Icon src={ic_clear} />
         </Action>
       )}
     </StyledWrapper>
