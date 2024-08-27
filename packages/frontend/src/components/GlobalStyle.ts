@@ -20,6 +20,7 @@ const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Pretendard';
     src: local('Pretendard-SemiBold'), url(${PretendardSemiBold}) format("woff2");
+    font-weight: 600;
   }
 
   @font-face {
