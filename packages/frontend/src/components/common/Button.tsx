@@ -30,6 +30,7 @@ const StyledWrapper = styled.button<{ buttontheme: ButtonTheme }>`
   height: 60px;
   font-size: 1rem;
   font-weight: 600;
+  cursor: pointer;
 
   ${({ buttontheme: buttonTheme }) =>
     buttonTheme == "filled" ? Filled : Outlined}

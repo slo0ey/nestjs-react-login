@@ -44,6 +44,7 @@ const Label = styled.label<{ minimize: string }>`
 `;
 
 const InnerInput = styled.input`
+  width: 280px;
   position: absolute;
   left: 20px;
   bottom: 10px;
