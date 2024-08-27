@@ -6,6 +6,7 @@ import ic_unchecked from "@icons/unchecked.svg";
 type CheckBoxProps = {
   name: string;
   label: string;
+  tabIndex: number | undefined;
   onChange: (value: boolean) => void;
 };
 
@@ -33,13 +34,14 @@ const Label = styled.label`
   cursor: pointer;
 `;
 
-function CheckBox({ name, label, onChange }: CheckBoxProps) {
+function CheckBox({ name, label, tabIndex, onChange }: CheckBoxProps) {
   return (
     <StyledWrapper>
       <InnerInput
         id={`id_${name}`}
         name={name}
         type="checkbox"
+        tabIndex={tabIndex}
         onChange={(event) => onChange(event.target.checked)}
       />
       <Label htmlFor={`id_${name}`}>{label}</Label>

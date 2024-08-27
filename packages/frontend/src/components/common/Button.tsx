@@ -5,6 +5,7 @@ type ButtonTheme = "filled" | "outlined";
 type ButtonProps = {
   children: React.ReactNode;
   theme: ButtonTheme;
+  tabIndex: number | undefined;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 };
 
@@ -36,10 +37,11 @@ const StyledWrapper = styled.button<{ buttontheme: ButtonTheme }>`
     buttonTheme == "filled" ? Filled : Outlined}
 `;
 
-function Button({ children, theme, onClick }: ButtonProps) {
+function Button({ children, theme, tabIndex, onClick }: ButtonProps) {
   return (
     <StyledWrapper
       buttontheme={theme}
+      tabIndex={tabIndex}
       onClick={(event) => {
         event.preventDefault();
         onClick(event);

@@ -7,6 +7,7 @@ type InputProps = {
   name: string;
   label: string;
   type: "text" | "email" | "password";
+  tabIndex: number | undefined;
   onChange: (value: string) => void;
 };
 
@@ -76,7 +77,7 @@ const Icon = styled.img`
 `;
 
 //TODO: [type: password]일 시 비밀번호 보이게 하는 버튼 추가
-function Input({ name, label, type, onChange }: InputProps) {
+function Input({ name, label, type, tabIndex, onChange }: InputProps) {
   const [inputState, setInputState] = useState<InputState>("none");
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -93,6 +94,7 @@ function Input({ name, label, type, onChange }: InputProps) {
         id={`id_${name}`}
         name={name}
         type={type}
+        tabIndex={tabIndex}
         onChange={(event) => onChange(event.target.value)}
         onFocus={() => setInputState("focused")}
         onBlur={(event) => {
@@ -106,6 +108,7 @@ function Input({ name, label, type, onChange }: InputProps) {
       />
       {inputState !== "none" && (
         <Action
+          tabIndex={-1}
           onClick={() => {
             if (inputRef.current) {
               onChange((inputRef.current.value = ""));
