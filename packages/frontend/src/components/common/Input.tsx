@@ -2,6 +2,8 @@ import { useRef, useState } from "react";
 import styled from "styled-components";
 
 import ic_clear from "@icons/clear.svg";
+import ic_hide from "@icons/hide.svg";
+import ic_show from "@icons/show.svg";
 
 type InputProps = {
   name: string;
@@ -79,6 +81,7 @@ const Icon = styled.img`
 //TODO: [type: password]일 시 비밀번호 보이게 하는 버튼 추가
 function Input({ name, label, type, tabIndex, onChange }: InputProps) {
   const [inputState, setInputState] = useState<InputState>("none");
+  const [hide, setHide] = useState<boolean>(true);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   return (
@@ -93,31 +96,45 @@ function Input({ name, label, type, tabIndex, onChange }: InputProps) {
       <InnerInput
         id={`id_${name}`}
         name={name}
-        type={type}
+        type={hide ? type : "text"}
         tabIndex={tabIndex}
         onChange={(event) => onChange(event.target.value)}
         onFocus={() => setInputState("focused")}
-        onBlur={(event) => {
+        onBlur={(event) =>
           event.target.value.length == 0
             ? setInputState("none")
-            : setInputState("written");
-        }}
+            : setInputState("written")
+        }
         ref={inputRef}
         spellCheck="false"
         autoCapitalize="none"
       />
       {inputState !== "none" && (
-        <Action
-          tabIndex={-1}
-          onClick={() => {
-            if (inputRef.current) {
-              onChange((inputRef.current.value = ""));
-              setInputState("none");
-            }
-          }}
-        >
-          <Icon src={ic_clear} />
-        </Action>
+        <>
+          {type === "password" && (
+            <Action
+              type="button"
+              tabIndex={-1}
+              onClick={() => {
+                setHide(!hide);
+              }}
+            >
+              <Icon src={hide ? ic_hide : ic_show} />
+            </Action>
+          )}
+          <Action
+            type="button"
+            tabIndex={-1}
+            onClick={() => {
+              if (inputRef.current) {
+                onChange((inputRef.current.value = ""));
+                setInputState("none");
+              }
+            }}
+          >
+            <Icon src={ic_clear} />
+          </Action>
+        </>
       )}
     </StyledWrapper>
   );
