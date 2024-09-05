@@ -7,11 +7,7 @@ import Button from "@components/common/Button";
 import CheckBox from "@components/common/CheckBox";
 import Divider from "@components/login/Divider";
 
-type LoginData = {
-  id: string;
-  password: string;
-  keep: boolean;
-};
+import { type LoginData } from "@utils/types";
 
 const InputArea = styled.div`
   display: flex;
