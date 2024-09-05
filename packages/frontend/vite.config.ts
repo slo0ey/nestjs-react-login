@@ -8,10 +8,6 @@ export default defineConfig({
   resolve: {
     alias: [
       {
-        find: "@src",
-        replacement: resolve(__dirname, "src"),
-      },
-      {
         find: "@assets",
         replacement: resolve(__dirname, "src/assets"),
       },
@@ -34,6 +30,10 @@ export default defineConfig({
       {
         find: "@hooks",
         replacement: resolve(__dirname, "src/hooks"),
+      },
+      {
+        find: "@utils",
+        replacement: resolve(__dirname, "src/utils"),
       },
     ],
   },
