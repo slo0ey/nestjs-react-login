@@ -1,23 +1,46 @@
-import { useEffect, useRef, useState } from "react";
+// import { useCallback, useEffect, useState } from "react";
 
-type IsValid<T, K> = (value: K, form: T) => boolean;
+// type FormState<F extends FormData> = {
+//   [K in keyof F]: FormValue<F[K]>;
+// };
 
-type Validator<T, K = keyof T> = {
-  target: K;
-  scenarios: IsValid<T, K>[];
-};
+// type FormValue<V> = {
+//   value: V;
+//   isValid: boolean;
+//   invalidReason: number | null;
+// };
 
-function useForm<T>(initialForm: T, validators: Validator<T>[]) {
-  const [formData, setFormData] = useState<T>(initialForm);
-  const preFormData = useRef<T>(initialForm);
+// type Validators<F extends FormData> = {
+//   [K in keyof F]: IsValid<FormState<F>, F[K]>[];
+// };
 
-  useEffect(() => {
-    for (const { target, scenarios } of validators) {
-      const targetValue = formData[target];
-      // 값이 바뀌지 않았다면 건너뛰기
-      if (targetValue === preFormData.current[target]) continue;
+// type IsValid<F, V> = (value: V, form: F) => boolean;
 
-      preFormData.current[target] = targetValue;
-    }
-  }, [formData]);
-}
+// function createFormState<F extends FormData>(initialForm: F): FormState<F> {
+//   return Object.entries(initialForm).reduce(
+//     (acc, [key, value]) => ({
+//       ...acc,
+//       [key]: {
+//         value,
+//         isValid: true,
+//         invalidReason: undefined,
+//       },
+//     }),
+//     {},
+//   ) as FormState<F>;
+// }
+
+// function useForm<F extends FormData>(
+//   initialForm: F,
+//   validators: Validators<F>,
+// ) {
+//   const [form, setForm] = useState<FormState<F>>(createFormState(initialForm));
+//   const updateForm = useCallback(<K extends keyof F>(key: K, value: F[K]) => {
+//     const validator = validators[key];
+//     const reason = validator.findIndex(isValid => !isValid(value, form));
+
+//     if (reason === -1) {
+//       if (form[key].isValid)
+//     }
+//   }, []);
+// }

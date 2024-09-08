@@ -1,12 +1,16 @@
-export type LoginData = {
+type FormData = Record<string, unknown>;
+
+interface LoginData extends FormData {
   id: string;
   password: string;
   keep: boolean;
-};
+}
 
-export type RegisterData = {
+interface RegisterData extends FormData {
   id: string;
   email: string;
   password: string;
   passwordConfirm: string;
-};
+}
+
+export type { FormData, LoginData, RegisterData };
