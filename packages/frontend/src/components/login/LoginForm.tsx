@@ -2,9 +2,9 @@ import { useRef } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import Input from "@components/common/Input";
 import Button from "@components/common/Button";
-import CheckBox from "@components/common/CheckBox";
+import Input from "@components/common/Input";
+import CheckBox from "@components/login/CheckBox";
 import Divider from "@components/login/Divider";
 
 import { type LoginData } from "@utils/types";
