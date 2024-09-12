@@ -5,7 +5,7 @@ import ic_clear from "@icons/clear.svg";
 import ic_hide from "@icons/hide.svg";
 import ic_show from "@icons/show.svg";
 
-type InputTheme = "normal" | "idle" | "error";
+type InputTheme = "complete" | "pending" | "error";
 
 type InputProps = {
   name: string;
@@ -21,12 +21,12 @@ type InputProps = {
 type InputState = "none" | "focused" | "written";
 
 const borderColors: Record<InputTheme, string> = {
-  normal: "var(--primary)",
-  idle: "#8a8a8a",
+  complete: "var(--primary)",
+  pending: "#8a8a8a",
   error: "#ff0000",
 };
 
-const StyledWrapper = styled.div<{ inputTheme: InputTheme }>`
+const StyledWrapper = styled.div<{ inputtheme: InputTheme }>`
   display: flex;
   justify-content: end;
   width: 420px;
@@ -36,7 +36,7 @@ const StyledWrapper = styled.div<{ inputTheme: InputTheme }>`
   border: 1px solid transparent;
   border-radius: 8px;
   background: linear-gradient(#f7f7f7, #f7f7f7),
-    ${({ inputTheme }) => borderColors[inputTheme]};
+    ${({ inputtheme }) => borderColors[inputtheme]};
   background-origin: border-box;
   background-clip: padding-box, border-box;
 `;
@@ -90,7 +90,6 @@ const Icon = styled.img`
   height: 16px;
 `;
 
-//TODO: [type: password]일 시 비밀번호 보이게 하는 버튼 추가
 function Input({
   name,
   label,
@@ -106,7 +105,7 @@ function Input({
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   return (
-    <StyledWrapper inputTheme={theme || "normal"}>
+    <StyledWrapper inputtheme={theme || "complete"}>
       <Label
         htmlFor={`id_${name}`}
         aria-hidden="true"
