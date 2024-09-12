@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { type FocusEvent, useRef, useState } from "react";
 import styled from "styled-components";
 
 import ic_clear from "@icons/clear.svg";
@@ -13,7 +13,9 @@ type InputProps = {
   type: "text" | "email" | "password";
   tabIndex: number | undefined;
   theme?: InputTheme;
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
+  onFocus?: (event: FocusEvent<HTMLInputElement, Element>) => void;
+  onBlur?: (event: FocusEvent<HTMLInputElement, Element>) => void;
 };
 
 type InputState = "none" | "focused" | "written";
@@ -89,7 +91,16 @@ const Icon = styled.img`
 `;
 
 //TODO: [type: password]일 시 비밀번호 보이게 하는 버튼 추가
-function Input({ name, label, type, tabIndex, theme, onChange }: InputProps) {
+function Input({
+  name,
+  label,
+  type,
+  tabIndex,
+  theme,
+  onChange = () => {},
+  onFocus = () => {},
+  onBlur = () => {},
+}: InputProps) {
   const [inputState, setInputState] = useState<InputState>("none");
   const [hide, setHide] = useState<boolean>(true);
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -109,12 +120,18 @@ function Input({ name, label, type, tabIndex, theme, onChange }: InputProps) {
         type={hide ? type : "text"}
         tabIndex={tabIndex}
         onChange={(event) => onChange(event.target.value)}
-        onFocus={() => setInputState("focused")}
-        onBlur={(event) =>
-          event.target.value.length == 0
-            ? setInputState("none")
-            : setInputState("written")
-        }
+        onFocus={(event) => {
+          setInputState("focused");
+          onFocus(event);
+        }}
+        onBlur={(event) => {
+          if (event.target.value.length === 0) {
+            setInputState("none");
+          } else {
+            setInputState("written");
+          }
+          onBlur(event);
+        }}
         ref={inputRef}
         spellCheck="false"
         autoCapitalize="none"
