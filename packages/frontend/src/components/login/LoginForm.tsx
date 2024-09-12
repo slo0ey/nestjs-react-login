@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Button from "@components/common/Button";
 import Input from "@components/common/Input";
@@ -40,6 +40,7 @@ const SubmitArea = styled.div`
 `;
 
 function LoginForm() {
+  const navigate = useNavigate();
   const loginData = useRef<LoginData>({
     id: "",
     password: "",
@@ -85,7 +86,11 @@ function LoginForm() {
           로그인
         </Button>
         <Divider />
-        <Button theme="outlined" tabIndex={5} onClick={() => {}}>
+        <Button
+          theme="outlined"
+          tabIndex={5}
+          onClick={() => navigate("/register")}
+        >
           회원가입
         </Button>
       </SubmitArea>
