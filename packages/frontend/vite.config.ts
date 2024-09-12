@@ -35,6 +35,10 @@ export default defineConfig({
         find: "@utils",
         replacement: resolve(__dirname, "src/utils"),
       },
+      {
+        find: "@styles",
+        replacement: resolve(__dirname, "src/styles"),
+      },
     ],
   },
   plugins: [react(), tsConfigPaths()],
