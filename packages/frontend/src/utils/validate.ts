@@ -26,8 +26,8 @@ export const PASSWORD: Scenario = {
   validate: (value) => pw_pattern.test(value),
 };
 
-export const SAME_PASSWORD = (password: string) =>
+export const SAME_PASSWORD = (passwordResolver: () => string) =>
   ({
     type: "DIFF_PW",
-    validate: (value) => password === value,
+    validate: (value) => passwordResolver() === value,
   }) as Scenario;
