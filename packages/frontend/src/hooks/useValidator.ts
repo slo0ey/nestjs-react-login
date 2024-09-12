@@ -6,7 +6,7 @@ export type Scenario = {
 };
 
 type ValueState = {
-  isValid: boolean;
+  status: "complete" | "pending" | "error";
   invalidReason: string | null;
 };
 
@@ -14,8 +14,8 @@ type Validator = (value: string) => void;
 
 function useValidator(scenarios: Scenario[]): [ValueState, Validator] {
   const [valueState, setValueState] = useState<ValueState>({
-    isValid: false,
-    invalidReason: scenarios[0].type,
+    status: "pending",
+    invalidReason: null,
   });
 
   const validate = (value: string) => {
@@ -25,12 +25,12 @@ function useValidator(scenarios: Scenario[]): [ValueState, Validator] {
 
     if (scenario === undefined) {
       setValueState({
-        isValid: true,
+        status: "complete",
         invalidReason: null,
       });
     } else {
       setValueState({
-        isValid: false,
+        status: "error",
         invalidReason: scenario.type,
       });
     }
