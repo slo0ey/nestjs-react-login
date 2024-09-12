@@ -1,12 +1,14 @@
 import Page from "@pages/Page";
 
-import LoginTitle from "@components/login/LoginTitle";
 import LoginForm from "@components/login/LoginForm";
+import Title from "@components/common/Title";
 
 function LoginPage() {
   return (
     <Page>
-      <LoginTitle />
+      <Title height="200px" bottom="32px" fontSize="3rem" fontWeight="700">
+        환영합니다
+      </Title>
       <LoginForm />
     </Page>
   );
